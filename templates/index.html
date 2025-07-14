@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista TO-DO</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <form action="/crear-tarea/" method="post">
+    <label for="titulo">Titulo: </label><br>
+    <input type="text" id="titulo" name="titulo" required><br>
+
+
+    <label for="descripcion">Descripcion:</label><br>
+    <textarea name="descripcion" id="descripcion"></textarea><br><br>
+
+     <label for="estado">Estado</label><br>
+     <select name="estado" id="estado">
+        <option value="pendiente">Pendiente</option>
+        <option value="en proceso">En Proceso</option>
+        <option value="completada">Completada</option>
+     </select><br><br>
+
+     <label for="fecha_creacion">Fecha de creacion</label><br>
+     <input type="date" id="fecha_creacion" name="fecha_creacion" required><br><br>
+
+     <input type="submit" value="agregar Tarea">
+      
+
+       <input type="submit" value="eliminar Tarea" formaction="/eliminar_tarea/">
+        <hr>
+
+    <h2>Listado de tareas existentes</h2>
+    <ul>
+        {% for tarea in tareas %}
+        <li>
+            <strong>{{ tarea.titulo }}</strong> - {{ tarea.estado }} ({{ tarea.fecha_creacion }})
+        </li>
+        {% else %}
+        <li>No hay tareas registradas</li>
+        {% endfor %}
+    </ul>
+     </form>
+
+
+
+
+</body>
+</html>
